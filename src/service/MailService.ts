@@ -39,7 +39,7 @@ class MailService {
             subject: 'Письмо с формы kebikov.com',
             html: `
                 <div>
-                    <h1>Почта отправителя: ${message.email}</h1>
+                    <h2>Почта отправителя: ${message.email}</h2>
                     <h3>${message.message}</h3>
                 </div>
             `

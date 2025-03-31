@@ -1,4 +1,4 @@
-export interface ReqPostEmailSend {
+export interface IReqPostEmailSend {
     email: string;
     msg: string;
 }

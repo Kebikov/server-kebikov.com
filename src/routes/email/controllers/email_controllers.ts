@@ -9,9 +9,9 @@ router.post('/send',
     body('email').isEmail().withMessage('Не коректный email.'),
     body('msg').notEmpty().withMessage('Пустое сообщение.'),
     body('check')
-        .isNumeric().withMessage('Вы ввели не число.')
-        .custom((value: number) => {
-            if(value !== 5) throw new Error('Не правильный ответ.')
+        .custom((value: unknown) => {
+            if(isNaN(Number(value)) && Number(value) !== 5) throw new Error('Не правильный ответ.');
+            return true;
         }), 
     EmailService.send
 );

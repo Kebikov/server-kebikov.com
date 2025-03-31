@@ -9,14 +9,28 @@ dotenv.config();
 
 const app = express();
 
+const originURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://kebikov.com';
+
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-app.use(cors());
+app.use(express.urlencoded({extended: false})); 
+// Разрешить запросы с http://localhost:3001
+app.use(cors({
+    origin: originURL,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true // Если работаешь с cookie или сессиями
+}));
 app.use('/api', router);
 
+
 app.get('/', (req, res) => {
-    res.status(200).send('Hello World !');
-})
+    res.status(200).send(`
+        Hello World ! 
+        originURL: ${originURL}
+        process.env.NODE_ENV: ${process.env.NODE_ENV}
+    `);
+});
+
 
 const startServer = async () => {
     try {
