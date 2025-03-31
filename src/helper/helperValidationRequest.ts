@@ -1,6 +1,7 @@
 import { Request } from "express";
 import { validationResult } from "express-validator";
-import type { IError } from "@/types";
+import type { IError } from "@/types/index.js";
+
 
 /**
  * Валидация входяших данных req.body
@@ -15,6 +16,7 @@ export const helperValidationRequest = (req: Request): IError | null => {
     const errorsValidation = validationResult(req);
     if(!errorsValidation.isEmpty()) {
         const arrayError = errorsValidation.array();
+        console.log(arrayError);
         if(arrayError.length > 0) {
             const errorMsg = arrayError[0].msg;
             return {error: 'Не прошло валидацию', discription: errorMsg};

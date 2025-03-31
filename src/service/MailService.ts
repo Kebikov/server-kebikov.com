@@ -1,7 +1,10 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
-import type SMTPTransport from 'nodemailer/lib/smtp-transport';
+import type SMTPTransport from 'nodemailer/lib/smtp-transport/index.js';
 dotenv.config();
+import { IMessage } from '@/types/service/EmailService';
+
+
 
 class MailService {
     public transporter: nodemailer.Transporter;
@@ -29,12 +32,17 @@ class MailService {
      * @param link Ссылка для активации.
      * @example await sendMail(to: string, link: string);
      */
-    async sendMail(msg: string) {
+    async sendMail(message: IMessage) {
         await this.transporter.sendMail({
             from: process.env.SMTP_USER,
             to: process.env.SMTP_EMAIL_TO,
             subject: 'Письмо с формы kebikov.com',
-            text: msg
+            html: `
+                <div>
+                    <h1>Почта отправителя: ${message.email}</h1>
+                    <h3>${message.message}</h3>
+                </div>
+            `
         });
     }
 

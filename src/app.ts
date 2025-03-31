@@ -3,7 +3,7 @@ import type { Request, Response } from "express";
 import dotenv from 'dotenv';
 import cors from 'cors';
 import chalk from 'chalk';
-import router from './modules';
+import router from './modules/index.js';
 
 dotenv.config();
 
@@ -14,8 +14,8 @@ app.use(express.urlencoded({extended: false}));
 app.use(cors());
 app.use('/api', router);
 
-app.get('/api', (req, res) => {
-    res.status(200).send({msg: 'ok'})
+app.get('/', (req, res) => {
+    res.status(200).send('Hello World !');
 })
 
 const startServer = async () => {

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import email from '@routes/email/controllers/email_controllers';
+import email from '@routes/email/controllers/email_controllers.js';
 
 const router = Router({mergeParams: true});  
 

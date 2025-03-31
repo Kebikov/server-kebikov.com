@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
-import MailService from "@/service/MailService";
-import { ReqPostEmailSend } from "../types";
-import { helperValidationRequest } from "@/helper/helperValidationRequest";
+import MailService from "@/service/MailService.js";
+import { ReqPostEmailSend } from "../../../types/email/index.js";
+import { helperValidationRequest } from "@/helper/helperValidationRequest.js";
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -18,7 +18,7 @@ class EmailService {
             const resultValidation = helperValidationRequest(req);
             if(resultValidation) return res.status(400).send(resultValidation); 
 
-            await MailService.sendMail(data.msg);
+            //await MailService.sendMail({email: data.email, message: data.msg});
             return res.status(200).send({msg: 'ok'}); 
         } catch (error) {
             const location = '[EmailService.send]';

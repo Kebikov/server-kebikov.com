@@ -2,9 +2,11 @@
     "name": "server-kebikov.com",
     "version": "1.0.0",
     "main": "index.js",
+    "type": "commonjs",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "npx nodemon"
+        "dev": "npx nodemon",
+        "build": "rimraf ./build && npx tsc && npx tsc-alias -p tsconfig.json",
+        "test-types": "tsc --noEmit"
     },
     "author": "",
     "license": "ISC",
@@ -16,10 +18,11 @@
         "@types/nodemailer": "^6.4.17",
         "@types/nodemon": "^1.19.6",
         "nodemon": "^3.1.9",
+        "rimraf": "^6.0.1",
         "typescript": "^5.8.2"
     },
     "dependencies": {
-        "chalk": "^5.4.1",
+        "chalk": "^4.1.2",
         "cors": "^2.8.5",
         "dotenv": "^16.4.7",
         "express": "^4.21.2",

@@ -1,11 +1,13 @@
 {
     "compilerOptions": {
-        "target": "ES2020",                                
-        "module": "NodeNext",                        
+        "target": "ES6",                                
+        "module": "CommonJS",  
+        "rootDir": "./src",
+        "outDir": "./build",                      
         "baseUrl": "./",                                 
         "paths": {
-            "@/*": ["src/*"],
-            "@routes/*": ["src/routes/*"],
+            "@/*": ["./src/*"],
+            "@routes/*": ["./src/routes/*"],
         },                                      
         "esModuleInterop": true,                            
         "forceConsistentCasingInFileNames": true,           
